@@ -61,6 +61,8 @@ def request(messages):
 
 #-----------------------------------------------------------
 inicio = time.time()
+comentarios = []
+gpt_result = []
 
 for i in range(0, len(result)):
     coment = result[i:i+10]
@@ -68,19 +70,24 @@ for i in range(0, len(result)):
     # contexto:
     mensagens = [{"role": "system",
                   "content": "voce é um interpletador de sentimentos, seu obijetivo é classificar em positivo, negativo ou neutro os textos enseridos, retorne apenas o sentimento do texto, caso vc não consigua identificar o sentimento apenas retorne 0"}]
-
+    comentarios.append(str(coment))
     mensagens.append({"role": "user", "content": str(coment)})
     try:
         temp = request(mensagens)
+        gpt_result.append(temp[0])
         print(temp[0])
         print(mensagens)
         print(i)
+    except ValueError:
+        break
+
     except:
         print("aguardando limite")
         fim = time.time()
-        time.sleep(70 - (fim - inicio))
+        time.sleep(60 - (fim - inicio))
 
 #---------------------------------------------------
 
-
+print(comentarios)
+print(gpt_result)
 
