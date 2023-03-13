@@ -4,7 +4,6 @@ import pandas as pd
 import mysql.connector
 import json
 
-from pandas import DataFrame
 
 #-----------------------------------------------------------
 # aws data:
@@ -33,14 +32,6 @@ df_2 = pd.read_csv("AutomodeNLP/comentarios2.csv")
 
 df_1 = df_1[:10000]
 df_2 = df_1[:10000]
-
-print("-"*20)
-
-print("shape:")
-print(df_1.shape)
-print(df_2.shape)
-
-print("-"*20)
 
 #-----------------------------------------------------------
 # request gpt:
