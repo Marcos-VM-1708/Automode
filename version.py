@@ -5,7 +5,7 @@ import pandas as pd
 import aws
 # ------------------------------------#
 # rules:
-openai.api_key = "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"
+openai.api_key = "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"
 tam_request = 50
 result = aws.data
 # ------------------------------------#
@@ -44,14 +44,13 @@ for i in range(0, len(result), tam_request):
         print(coment)   #comentarios
         print()
 
-    except ValueError:
-        break
 
-    except:
+
+    except openai.error.RateLimitError:
         print("aguardando limite")
         fim = time.time()
         time.sleep(80 - (fim - inicio))
-
+        continue
 # # ------------------------------------#
 diagnostico = []
 
