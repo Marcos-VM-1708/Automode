@@ -1,13 +1,10 @@
 import openai
-import time
-import random
-import pandas as pd
-
 #--------------------------------------------------
+# teste de requisições, imput um texto manual e retorna o sentimento
 
-openai.api_key = "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"
+openai.api_key = "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"
 
-def gerar_resposta(messages):
+def request(messages):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages= messages,
@@ -16,6 +13,7 @@ def gerar_resposta(messages):
     )
     return [response.choices[0].message.content, response.usage]
 
+#-----------------------------------------------------------
 mensagens = [{"role": "system", "content": "voce é um interpletador de sentimentos, seu obijetivo é classificar em positivo, negativo ou neutro os textos enseridos"}]
 
 while True:
@@ -25,7 +23,7 @@ while True:
 
     mensagens.append({"role": "user", "content": str(question)})
 
-    answer = gerar_resposta(mensagens)
+    answer = request(mensagens)
     print("enviado:", question)
     print("ChatGPT:", answer[0], "\nCusto:\n", answer[1])
 
