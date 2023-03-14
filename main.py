@@ -5,7 +5,7 @@ import openai
 start_time = time.perf_counter()
 
 df = aws.data
-openai.api_key = "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"
+openai.api_key = "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"
 def request(messages):
     # api log:
     response = openai.ChatCompletion.create(model="gpt-3.5-turbo",
@@ -31,18 +31,22 @@ for i in range(0, len(df), 10):
             print(f"{temp[0]}\n")
             print(i)
             print(cont)
+            print(f"tokens{ temp[1]}")
             cont = cont + 10
 
         except openai.error.InvalidRequestError:
+            print("deu merda aqui nessa poha")
             continue
 
         except ValueError:
             print("deu merda aqui")
+            continue
 
         except openai.error.RateLimitError:
             print("esperando request :(")
             fim = time.time()
-            time.sleep(60 - (fim - inicio))
+            print(fim - inicio)
+            time.sleep(65)
             continue
 
 end_time = time.perf_counter()
