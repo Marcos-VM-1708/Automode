@@ -2,7 +2,7 @@ import openai
 #--------------------------------------------------
 # teste de requisições, imput um texto manual e retorna o sentimento
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 def request(messages):
     response = openai.ChatCompletion.create(

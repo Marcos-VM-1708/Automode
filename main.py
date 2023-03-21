@@ -6,7 +6,8 @@ from joblib import parallel, delayed
 start_time = time.perf_counter()
 
 df = aws.data
-openai.api_key = "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"
+openai.api_key = "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"
+
 def request(messages):
     # api log:
     response = openai.ChatCompletion.create(model="gpt-3.5-turbo",
